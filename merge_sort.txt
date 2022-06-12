@@ -1,0 +1,49 @@
+//merge sort
+# include<iostream>
+using namespace std;
+void merge(int a[], int p, int q, int r)
+{
+    int n1 = q - p + 1;
+    int n2 = r - q;
+ 
+    int* L = new int[n1+1];
+    int* R = new int[n2+1];
+ 
+    for (int i = 1; i < n1; i++)
+        L[i] = a[p + i-1 ];
+ 
+    for (int j = 1; j < n2; j++)
+        R[j] = a[q + j ];
+    int i = 1;
+    int j = 1;
+ 
+    for (int k = p; k < r; k++)
+    {
+        if (L[i] <= R[j])
+        {
+            a[k] = L[i];
+            i++;
+        }
+        else
+        {
+            a[k] = R[j];
+            j++;
+        }
+ 
+    }
+}
+void merge_sort(int arr[],int l,int r){
+    if(l<r){
+        int m=l+(r-l)/2;
+        merge_sort(arr,l,m);
+        merge_sort(arr,m+1,r);
+        merge(arr,l,m,r);
+    }
+int main(){
+int x;
+cin>>x;
+int arr[x];
+for(int i=0;i<x;i++)cin>>arr[i];
+merge_sort(arr,0,x);
+for(int i=0;i<x;i++)cout<<arr[i]<<" ";
+}

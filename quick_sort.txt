@@ -1,0 +1,47 @@
+//quick sort
+# include<iostream>
+using namespace std;
+void quicksort(int arr[],int start,int end)
+{
+	int right = end;
+	int left = start;
+	int pivot = left;
+	while (left != right)
+	{
+		if (pivot == left)
+		{
+			if (arr[pivot] <= arr[right]) {
+				right--;
+			}else {
+			swap(arr[pivot], arr[right]);
+			pivot == right;
+		}
+		}
+		else if(pivot==right)
+		{
+			if (arr[pivot] >= arr[left]) {
+				left++;
+			}
+			else {
+				swap(arr[pivot], arr[left]);
+				pivot = left;
+			}
+		}
+		
+	}
+	if (start < pivot) {
+		quicksort(arr, 0, pivot - 1);
+	}
+	if (end > pivot) {
+		quicksort(arr, pivot +1 ,end);
+	}
+
+}
+int main(){
+int x;
+cin>>x;
+int arr[x];
+for(int i=0;i<x;i++)cin>>arr[i];
+quicksort(arr,0,x);
+for(int i=0;i<x;i++)cout<<arr[i]<<" ";
+}
